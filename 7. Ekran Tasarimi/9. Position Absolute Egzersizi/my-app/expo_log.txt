@@ -1,0 +1,6 @@
+Starting project at D:\Git_Works\React-Native-Uygulamal-React-Native-E-itimi-2024-G-ncel-\7. Ekran Tasarimi\9. Position Absolute Egzersizi\my-app
+› Port 8081 is being used by another process
+Input is required, but 'npx expo' is in non-interactive mode.
+Required input:
+> Use port 8082 instead?
+› Skipping dev server
