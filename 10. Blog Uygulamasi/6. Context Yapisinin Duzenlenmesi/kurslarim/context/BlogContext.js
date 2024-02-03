@@ -1,23 +1,23 @@
-import React, { useState, useReducer, createContext } from "react";
-import CreateDataContex from "./CreateDataContex";
- 
- 
+import React, { useState, useReducer } from 'react';
+import createDataContext from './createDataContext';
 
 const blogReducer = (state, action) => {
-    switch (action.type) {
-        case 'add_blogpost':
-            return [...state, { title: 'Vue js' }]
-
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case 'add_blogpost':
+      return [...state, { title: 'Angular Js' }];
+    default:
+      return state;
+  }
+};
 
 const addBlogPost = (dispatch) => {
-  return()=>{
-    dispatch({ type: 'add_blogpost' })
+  return () => {
+    dispatch({ type: 'add_blogpost' });
+  };
+};
 
-  }  
-}
-
-export const {Context,Provider}=CreateDataContex(blogReducer,{addBlogPost},[]);
+export const { Context, Provider } = createDataContext(
+  blogReducer,
+  { addBlogPost },
+  []
+);
