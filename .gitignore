@@ -3,3 +3,4 @@
 node_modules/
 *.bat
 !delete_node_modules.bat
+!startexpo.bat
