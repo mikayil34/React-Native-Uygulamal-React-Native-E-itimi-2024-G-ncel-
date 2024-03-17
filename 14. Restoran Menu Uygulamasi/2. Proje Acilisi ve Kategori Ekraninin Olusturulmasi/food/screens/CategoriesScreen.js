@@ -21,4 +21,8 @@ export default function CategoriesScreen() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+
+  
+});
