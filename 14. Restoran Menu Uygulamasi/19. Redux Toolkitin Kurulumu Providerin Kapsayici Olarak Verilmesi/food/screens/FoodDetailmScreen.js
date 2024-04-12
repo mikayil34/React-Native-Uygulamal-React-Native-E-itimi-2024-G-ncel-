@@ -4,13 +4,20 @@ import { FOODS } from '../data/dummy-data';
 import FoodIngredients from '../components/FoodIngredients';
 import { Entypo } from '@expo/vector-icons';
 import { FavoritesContext } from '../store/favoritescontext';
- 
+import { useSelector } from 'react-redux';
+import { addFavorite, removeFavorite } from '../store/redux/favorites';
+import { useDispatch } from 'react-redux';
+
 export default function FoodDetailmScreen({ route, navigation }) {
-    const favoriteFoodContext = useContext(FavoritesContext);
+
+    var favoriteFoodIds = useSelector((state) => state.favorteFoods.ids);
+
+    // const favoriteFoodContext = useContext(FavoritesContext);
     const { Foodid } = route.params;
     const selectFood = FOODS.find((food) => food.id === Foodid)
 
-    const isFavorite = favoriteFoodContext.ids.includes(Foodid);
+    const isFavorite = favoriteFoodIds.includes(Foodid);
+    const dispatch = useDispatch();
 
     const presHandler = () => {
 
@@ -18,29 +25,29 @@ export default function FoodDetailmScreen({ route, navigation }) {
 
     function changeFavorite() {
         if (isFavorite) {
-            favoriteFoodContext.removeFavorite(Foodid);
+            dispatch(removeFavorite({ id: Foodid }));
         } else {
-            favoriteFoodContext.addFavorite(Foodid);
+            dispatch(addFavorite({ id: Foodid }));
         }
     }
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
                 return <Pressable onPress={presHandler} style={({ pressed }) => (pressed ? styles.pressed : null)}>
-                  
-                    <Entypo 
-                    name={isFavorite?"star":"star-outlined"}
-                     size={24} color="white" 
-                     onPress={changeFavorite}
-                     />
-                    
+
+                    <Entypo
+                        name={isFavorite ? "star" : "star-outlined"}
+                        size={24} color="white"
+                        onPress={changeFavorite}
+                    />
+
                 </Pressable>
             },
 
 
         });
     },
-        [navigation, selectFood.title,changeFavorite,isFavorite]);
+        [navigation, selectFood.title, changeFavorite, isFavorite]);
 
     return (
         <ScrollView style={styles.container}>
